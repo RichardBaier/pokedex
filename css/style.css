@@ -1,0 +1,32 @@
+#top {
+    text-align: center;
+}
+
+#top-img {
+    width: 60%;
+}
+
+nav {
+    background-color:goldenrod;
+}
+
+#nav-lists {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+#name-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#type-index-input {
+    display: flex;
+    justify-content: space-around;
+}
