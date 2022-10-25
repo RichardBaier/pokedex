@@ -24,9 +24,40 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
 }
 
-#type-index-input {
+#submit-button {
+    background-color:black;
+    color:white;
+    border-radius: 0.4rem;
+}
+
+#type-and-index-input {
     display: flex;
     justify-content: space-around;
+}
+
+.input-box-style {
+    border-radius: 0.3rem;
+    border-color: cornflowerblue;
+    width: 13rem;
+    color: gray;
+}
+
+#pokemon-types {
+    border-radius: 0.3rem;
+    border-color:cornflowerblue;
+    border-width: 0.15rem;
+    margin-top: 0.5rem;
+}
+
+#type-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#number-input {
+    margin-top: 0.5rem;
 }

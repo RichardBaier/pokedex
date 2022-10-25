@@ -22,14 +22,14 @@
     <main>
         <div id="name-input">
             <form>
-                <input type="text" value="Enter a pokemon name here">
-                <input type="submit" value="Search">
+                <input type="text" value="Enter a pokemon name here" class="input-box-style">
+                <input type="submit" value="Search" id="submit-button">
             </form>
         </div>
 
-        <div id="type-index-input">
-            <div>
-                <label for="pokemon-types">Choose a type:</label>
+        <div id="type-and-index-input">
+            <div id="type-div">
+                <label for="pokemon-types"><strong>Choose a type</strong></label>
                 <select name="pokemon-types" id="pokemon-types">
                     <option value="types">types</option>
                     <option value="111">111</option>
@@ -40,8 +40,8 @@
             </div>
             <div>
                 <form>
-                    <label for="fname">Enter a pokedex number</label><br>
-                    <input type="text" value="Enter a number between 1 to 151">
+                    <label for="number-input"><strong>Enter a pokedex number</strong></label><br>
+                    <input type="text" value="Enter a number between 1 to 151" class="input-box-style" id="number-input">
                 </form>
             </div>
     
