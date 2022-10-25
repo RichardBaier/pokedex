@@ -31,3 +31,44 @@
     width: 13rem;
     color: gray;
 }
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+.container{
+    width:400px;
+    position:absolute;
+    top:50%;
+    left:30%;
+}
+
+#card{
+    
+    width: 100%;
+    padding:30px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px;
+}
+#card img{
+    display: block;
+    width: 180px;
+    max-height: 200px auto;
+    position: relative;
+    margin: 20px auto;
+
+  }
+  .ID{
+    width:80px;
+    background-color: white;
+    text-align: center;
+    padding:8px 0;
+    border-radius: 30px;
+    margin-left: auto;
+
+  }
+  .name{
+    font-size: 25px;
+    font-weight: bold;
+  }
