@@ -20,7 +20,6 @@ $('#searchBtn').click(() => {
     youtubeQuery(searchInput);
 })
 
-// function appendYoutubeInfo(data) {
-//     const title = data.title;
-//     const thumbnail = 
-// }
+function appendYoutubeInfo() {
+    
+}
