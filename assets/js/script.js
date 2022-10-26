@@ -2,13 +2,13 @@
 const youtubeKey = 'AIzaSyDZydKsrsx6X3k5coX1yjxwzupOmTEanDY';
 var container = document.querySelector('.container')
 const LOCAL_STORAGE_KEY = "Names";
-//  local storage for history
+
 var historyNameArray = [];
-// 刷新页面时，获取local storage的数据，并把值赋给historyNameArray
+
+// obtain history local storage data, use them to update historyNameArray and render history buttons
 initLocalStorage();
 
 function initLocalStorage() {
-    //获取local storage的数据
     var currentLocalStorageVal = localStorage.getItem(LOCAL_STORAGE_KEY);
     if(currentLocalStorageVal != null) {
         historyNameArray = JSON.parse(currentLocalStorageVal);
@@ -108,7 +108,7 @@ function getPokemon(searchInput){
 // save input Pokemon names to local storage
 function addNamesToLocalStorage(name){
     historyNameArray.push(name);
-    // 把新的数组转换为字符串
+    // convert new array into string
     var stringifiedHistoryName = JSON.stringify(historyNameArray);
     // store string in local storage
     localStorage.setItem(LOCAL_STORAGE_KEY, stringifiedHistoryName);
