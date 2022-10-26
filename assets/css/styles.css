@@ -6,40 +6,53 @@
     width: 60%;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    background-color:rgb(243, 218, 84);
+    font-size: 2rem;
+    text-align: center;
+    height: 4rem;
+}
+
 #name-input {
     display: flex;
-    flex-direction: column;
-    margin-top: 4rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 #searchInput {
-    width: 25%;
-    font-size: small;
+    width: 30%;
+    height: 3rem;
+    border-radius: 5rem;
+    border-width: 0.2rem;
+    border-style: groove;
+    color: gray;
+    font-size: 1.5rem;
 }
 
 #searchBtn {
-    background-color:rgb(243,218,84);
-    border-radius: 0.4rem;
-    margin-top: 1rem;
-    margin-left: 5rem;
+    background-color: deepskyblue;
+    border-radius: 0.5rem;
+    border-style: none;
+    margin-left: 2rem;
     width: 8%;
+    height: 3rem;
+    font-size: 1.5rem;
+    align-self: center;
 }
 
-.input-box-style {
-    border-radius: 0.3rem;
-    border-color: cornflowerblue;
-    width: 13rem;
-    color: gray;
+#searchBtn:hover {
+    background-color:#002ead;
+    box-shadow: 0 0 0 4px #5a01a7;
+    transition: 0.7s;
 }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 .container{
     width:400px;
     position:absolute;
-    top:50%;
-    left:30%;
+    top:70%;
+    left:35%;
 }
 
 #card{
@@ -61,14 +74,39 @@
   }
   .ID{
     width:80px;
-    background-color: white;
+    background-color:rgb(248, 240, 17);
     text-align: center;
     padding:8px 0;
     border-radius: 30px;
     margin-left: auto;
+    font-weight: 700;
 
   }
   .name{
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
+    text-align: center;
+    
   }
+  .types{
+    font-size: 18px ;
+    margin-bottom: 8px;
+    
+  }
+  .height-weight{
+    font-size: 18px;
+    margin-bottom: 8px;
+    
+    
+  }
+.abilities{
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.stats{
+    font-size: 18px;
+}
+
+
+
+/* TODO: Add media query */
