@@ -1,7 +1,20 @@
 // API Keys
 const youtubeKey = 'AIzaSyDZydKsrsx6X3k5coX1yjxwzupOmTEanDY';
 var container = document.querySelector('.container')
+const LOCAL_STORAGE_KEY = "Names";
 
+var historyNameArray = [];
+
+// obtain history local storage data, use them to update historyNameArray and render history buttons
+initLocalStorage();
+
+function initLocalStorage() {
+    var currentLocalStorageVal = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if(currentLocalStorageVal != null) {
+        historyNameArray = JSON.parse(currentLocalStorageVal);
+        renderHistoryButtons(historyNameArray);
+    }
+}
 
 // Youtube Fetch Request
 async function youtubeQuery(searchInput) {
@@ -15,18 +28,26 @@ async function youtubeQuery(searchInput) {
     })
 }
 
-var nameArray = [];
+
 // runs functions with search input when the button is clicked
 $('#searchBtn').click(() => {
     var searchInput = $('#searchInput').val();
-    // console.log(searchInput);
     container.removeAttribute("hidden");
     getPokemon(searchInput);
     youtubeQuery(searchInput);
-    nameArray.push(searchInput);
-    addNamesToLocalStorage(nameArray);
-})
+    // add name to local storage
+    addNamesToLocalStorage(searchInput);
 
+    //append the button
+    var $historySection = $("#history-section");
+    var $historyNamesButton = $("<button>");
+    $historyNamesButton.html(searchInput);
+    $historyNamesButton.click(function (){
+        var thisBtnVal = $(this).html();
+        getPokemon(thisBtnVal);
+    });
+    $historySection.append($historyNamesButton);
+})
 
 // function appendYoutubeInfo(data) {
 //     const title = data.title;
@@ -85,30 +106,27 @@ function getPokemon(searchInput){
 }
 
 // save input Pokemon names to local storage
-function addNamesToLocalStorage(nameArray){
-    localStorage.setItem("Names:", JSON.stringify(nameArray));
-    getNamesFromLocalStorage(nameArray);
+function addNamesToLocalStorage(name){
+    historyNameArray.push(name);
+    // convert new array into string
+    var stringifiedHistoryName = JSON.stringify(historyNameArray);
+    // store string in local storage
+    localStorage.setItem(LOCAL_STORAGE_KEY, stringifiedHistoryName);
 }
 
-// get input Pokemon names from local storage and render on left side of web page as buttons
-function getNamesFromLocalStorage(nameArray){
-    var pokemonNames = JSON.parse(localStorage.getItem("Names:"));
-    console.log(pokemonNames);
+// render names on the left side of webpage as buttons and register click event
+function renderHistoryButtons(nameArray){
     var $historySection = $("#history-section");
     for(let i = 0; i < nameArray.length; i++){
         var names = nameArray[i];
         var $historyNamesButton = $("<button>");
-        $historyNamesButton.html(nameArray[i]);
+        $historyNamesButton.html(names);
+        $historyNamesButton.click(function (){
+            var thisBtnVal = $(this).html();
+            getPokemon(thisBtnVal);
+        });
         $historySection.append($historyNamesButton);
     }
-    $historyNamesButton.on("click", findRightButton(event));
-}
-// by clicking on the button, call getPokemon function again to render the card on web page
-
-function findRightButton(event){
-    var element = event.target;
-    var buttonName = element.val;
-    getPokemon(buttonName);
 }
 
 //**temp placeholder to view changes **
