@@ -147,7 +147,7 @@ function addNamesToLocalStorage(name){
 // render names on the left side of webpage as buttons and register click event
 function renderHistoryButtons(nameArray){
     var $historySection = $("#history-section");
-    for(let i = 0; i < nameArray.length; i++){
+    for(let i = 0; nameArray.length; i++){
         var names = nameArray[i];
         var $historyNamesButton = $("<button>");
         $historyNamesButton.html(names);
@@ -157,7 +157,7 @@ function renderHistoryButtons(nameArray){
             youtubeQuery(thisBtnVal);
         });
         $historySection.append($historyNamesButton);
-    }
+    } 
 }
 
 //**temp placeholder to view changes **
