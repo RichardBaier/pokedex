@@ -196,6 +196,34 @@ nav {
         font-size: 22px;
         display: flex;
         text-align: center;
+        margin: 0;
+        width: 100%;
     }
     
+    #name-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #searchBtn {
+        margin-left: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        display: flex;
+        text-align: center;
+        position: relative;
+    }
+
+    #history-section {
+        display: flex;
+        text-align: center;
+    }
+
+    .videos {
+        display: flex;
+        flex-direction: column;
+    }
 }
