@@ -206,12 +206,16 @@ nav {
         align-items: center;
     }
 
+    #card {
+        width: 300px;
+    }
+
     #searchBtn {
         margin-left: 0;
     }
 
     .container {
-        flex-direction: column;
+        flex-direction: column-reverse;
         display: flex;
         text-align: center;
         position: relative;
