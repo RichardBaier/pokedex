@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Pokedex</title>
 </head>
@@ -11,29 +11,36 @@
     <div id="top">
         <img src="./assets/img/homepage-banner.png" alt="banner" id="top-img">
     </div>
+    <nav>
+        <h3>Find the key information on pokemon with a simple click.</h3>
+    </nav>
     <main>
-        <div id="name-input">
-            
-            <input type="text" placeholder="Enter a pokemon name here" class="input-box-style" id="searchInput">
-            <button id="searchBtn">Search</button>
-            
-        </div>
-
-        <div id="type-and-index-input">
-            <div id="type-div">
-                <label for="pokemon-types"><strong>Choose a type</strong></label>
-                <select name="pokemon-types" id="pokemon-types">
-                    <option value="types">types</option>
-                    <option value="111">111</option>
-                    <option value="222">222</option>
-                    <option value="333">333</option>
-                    <option value="444">444</option>
-                </select>
+        <section>
+            <div id="name-input">
+                <input type="text" placeholder=" Enter a pokemon name here" class="input-box-style" id="searchInput">
+                <button id="searchBtn">Search</button>
+            </div>
+            <div id="history-section">
+                <!-- add history buttons here in js-->
             </div>
         </section>
-        <div id="card-section">
-            <!-- add card section here in js-->
-        </div>   
+        <div class="container"> <!--Remember to add hidden attr-->
+            <div id="card">
+                <p class="ID">
+                  <span>ID#</span>
+                </p>
+                <img src="" class="image"/>
+                <h2 class="name"></h2>
+                <div class="types"></div>
+                <div class="height-weight"></div>  
+                <div class="abilities"></div>
+                <div class="stats"></div>
+                    
+                
+        
+            </div>
+        </div>  
+    
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
