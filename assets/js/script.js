@@ -18,35 +18,60 @@ function initLocalStorage() {
 
 // Youtube Fetch Request
 async function youtubeQuery(searchInput) {
-    const youtubeSearch = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchInput}&key=${youtubeKey}&maxResults=1`;
+    const youtubeSearch = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchInput}&key=${youtubeKey}&maxResults=5`;
 
     await fetch(youtubeSearch)
-    .then(res => res.json())
-    .then(result => {
-        // Add the function that appends the youtube info to the page
-        console.log(result)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(snippet){
+        console.log(snippet);
+        for(let i = 0; i < 5; i++){
+            const title = snippet.items[i].snippet.title;
+            const thumbnail = snippet.items[i].snippet.thumbnails.default.url;
+            const videoID = snippet.items[i].id.videoId;
+
+            const youtubeHTML = `<a href="https://www.youtube.com/watch?v=${videoID}">
+                                    <div id='ytCard'>
+                                    <h2>${title}</h2>
+                                    <img src='${thumbnail}'>
+                                    </div>
+                                </a>`;
+            $('.videos').append(youtubeHTML);
+        }
     })
 }
 
 
 // runs functions with search input when the button is clicked
 $('#searchBtn').click(() => {
+    let videos = document.querySelector('.videos');
     var searchInput = $('#searchInput').val();
     container.removeAttribute("hidden");
+    // clear the old content in container when the button is clicked
+    videos.innerHTML = "";
+    // if the search input is empty, don't add it to local storage or append the button
+    if(searchInput == ""){
+        return;
+    };
     getPokemon(searchInput);
-    youtubeQuery(searchInput);
-    // add name to local storage
-    addNamesToLocalStorage(searchInput);
-
-    //append the button
-    var $historySection = $("#history-section");
-    var $historyNamesButton = $("<button>");
-    $historyNamesButton.html(searchInput);
-    $historyNamesButton.click(function (){
-        var thisBtnVal = $(this).html();
-        getPokemon(thisBtnVal);
-    });
-    $historySection.append($historyNamesButton);
+    //youtubeQuery(searchInput);
+        
+    // if the input name does not exist in the historyNameArray, add it to local storage and append the button
+    if(historyNameArray.indexOf(searchInput) == -1){
+        // add name to local storage
+        addNamesToLocalStorage(searchInput);
+        // create and append the input name button
+        var $historySection = $("#history-section");
+        var $historyNamesButton = $("<button>");
+        $historyNamesButton.html(searchInput);
+        // register click event
+        $historyNamesButton.click(function (){
+            var thisBtnVal = $(this).html();
+            getPokemon(thisBtnVal);
+        });
+        $historySection.append($historyNamesButton);
+    }
 })
 
 // function appendYoutubeInfo(data) {
@@ -63,6 +88,9 @@ function getPokemon(searchInput){
     var APIURL = `https://pokeapi.co/api/v2/pokemon/${searchInput}`;
     fetch(APIURL)
     .then(function(response){
+        if (response.status === 404) {
+            return;
+          }
         return response.json()
     })
     .then(function(pokemon){
@@ -102,6 +130,8 @@ function getPokemon(searchInput){
         
         //image icon displays a picture of the pokemon
         imageIcon.setAttribute('src', imageUrl)
+
+        youtubeQuery(searchInput);
     })
 }
 
@@ -124,6 +154,7 @@ function renderHistoryButtons(nameArray){
         $historyNamesButton.click(function (){
             var thisBtnVal = $(this).html();
             getPokemon(thisBtnVal);
+            youtubeQuery(thisBtnVal);
         });
         $historySection.append($historyNamesButton);
     }

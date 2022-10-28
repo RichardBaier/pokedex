@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <title>Pokedex</title>
+</head>
+<body>
+    <div id="top">
+        <img src="./assets/img/homepage-banner.png" alt="banner" id="top-img">
+    </div>
+    <nav>
+        <h3>Find the key information on <span id="nav-title">Pokemon</span> with a simple click.</h3>
+    </nav>
+    <main>
+        <section>
+            <!-- search input and search button -->
+            <div id="name-input">
+                <input type="text" placeholder=" Enter a pokemon name here" class="input-box-style" id="searchInput">
+                <button id="searchBtn">Search</button>
+            </div>
+        </section>
+        <!-- pokemon card area-->
+        <div class="content">
+            <div class="container" hidden> 
+                <div id="history-section">
+                    <!-- add history buttons here in js-->
+                </div>
+                <div id="card">
+                    <p class="ID">
+                      <span>ID#</span>
+                    </p>
+                    <img src="" class="image"/>
+                    <h2 class="name"></h2>
+                    <div class="types"></div>
+                    <div class="height-weight"></div>  
+                    <div class="abilities"></div>
+                    <div class="stats"></div>
+                </div>
+            </div>  
+            <div class="videos">
+                    
+            </div>
+        </div>
+    
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
