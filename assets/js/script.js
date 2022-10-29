@@ -58,20 +58,7 @@ $('#searchBtn').click(() => {
     //youtubeQuery(searchInput);
         
     // if the input name does not exist in the historyNameArray, add it to local storage and append the button
-    if(historyNameArray.indexOf(searchInput) == -1){
-        // add name to local storage
-        addNamesToLocalStorage(searchInput);
-        // create and append the input name button
-        var $historySection = $("#history-section");
-        var $historyNamesButton = $("<button>");
-        $historyNamesButton.html(searchInput);
-        // register click event
-        $historyNamesButton.click(function (){
-            var thisBtnVal = $(this).html();
-            getPokemon(thisBtnVal);
-        });
-        $historySection.append($historyNamesButton);
-    }
+    
 })
 
 // function appendYoutubeInfo(data) {
@@ -80,31 +67,30 @@ $('#searchBtn').click(() => {
 // }
 
 function getPokemon(searchInput){
-
-    //**temp placeholder to view changes **
-    //searchInput = 'pikachu'
-    //**temp placeholder to view changes **
     
     var APIURL = `https://pokeapi.co/api/v2/pokemon/${searchInput}`;
-    fetch(APIURL)
-    .then(function(response){
-        if (response.status === 404) {
-            return;
-          }
-        return response.json()
+        fetch(APIURL)
+        .then(function(response){
+            if (response.status >=200 && response.status <=299) {
+                return response.json();
+            }else {
+                $('#myModal').modal('show');
+                $('.close-modal').hide();
+                throw Error(response.statusText)
+            }
     })
     .then(function(pokemon){
         var imageUrl = '';
         var imageIcon = document.querySelector('.image');
         var name = document.querySelector(".name");
-        var pokemonType = document.querySelector('.types')
+        var pokemonType = document.querySelector('.types');
         var pokemonId = document.querySelector('.ID');
-        var heightWeight = document.querySelector('.height-weight')
+        var heightWeight = document.querySelector('.height-weight');
         var height = 0;
         var weight = 0;
-        var ability = document.querySelector(".abilities")
+        var ability = document.querySelector(".abilities");
 
-        var stats = document.querySelector('.stats')
+        var stats = document.querySelector('.stats');
         var hp = pokemon.stats[0].base_stat;
         var attack = pokemon.stats[1].base_stat;
         var defense = pokemon.stats[2].base_stat;
@@ -129,7 +115,24 @@ function getPokemon(searchInput){
         stats.textContent = `HP: ${hp} Attack: ${attack} Defense: ${defense} Speed: ${speed}`;
         
         //image icon displays a picture of the pokemon
-        imageIcon.setAttribute('src', imageUrl)
+        imageIcon.setAttribute('src', imageUrl);
+
+
+        if(historyNameArray.indexOf(searchInput) == -1 && historyNameArray.length < 8){
+            // add name to local storage
+            addNamesToLocalStorage(searchInput);
+            // create and append the input name button
+            var $historySection = $("#history-section");
+            var $historyNamesButton = $("<button>");
+            $historyNamesButton.html(searchInput);
+            // register click event
+            $historyNamesButton.click(function (){
+                var thisBtnVal = $(this).html();
+                // videos.innerHTML = "";
+                getPokemon(thisBtnVal);
+            });
+            $historySection.append($historyNamesButton);
+        }
 
         youtubeQuery(searchInput);
     })
@@ -153,13 +156,10 @@ function renderHistoryButtons(nameArray){
         $historyNamesButton.html(names);
         $historyNamesButton.click(function (){
             var thisBtnVal = $(this).html();
+            // videos.innerHTML = "";
             getPokemon(thisBtnVal);
             youtubeQuery(thisBtnVal);
         });
         $historySection.append($historyNamesButton);
     } 
 }
-
-//**temp placeholder to view changes **
-//getPokemon();
-//**temp placeholder to view changes **
