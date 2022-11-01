@@ -20,12 +20,13 @@ function initLocalStorage() {
 async function youtubeQuery(searchInput) {
     const youtubeSearch = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchInput}&key=${youtubeKey}&maxResults=5`;
 
+    $('.videos').empty();
+
     await fetch(youtubeSearch)
     .then(function(response){
         return response.json();
     })
     .then(function(snippet){
-        console.log(snippet);
         for(let i = 0; i < 5; i++){
             const title = snippet.items[i].snippet.title;
             const thumbnail = snippet.items[i].snippet.thumbnails.default.url;
@@ -77,7 +78,7 @@ function getPokemon(searchInput){
                 $('#myModal').modal('show');
                 $('.close-modal').hide();
                 throw Error(response.statusText)
-            }
+             }
     })
     .then(function(pokemon){
         var imageUrl = '';
@@ -156,9 +157,8 @@ function renderHistoryButtons(nameArray){
         $historyNamesButton.html(names);
         $historyNamesButton.click(function (){
             var thisBtnVal = $(this).html();
-            // videos.innerHTML = "";
             getPokemon(thisBtnVal);
-            youtubeQuery(thisBtnVal);
+            //youtubeQuery(thisBtnVal);
         });
         $historySection.append($historyNamesButton);
     } 
