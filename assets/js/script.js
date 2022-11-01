@@ -2,6 +2,7 @@
 const youtubeKey = 'AIzaSyDZydKsrsx6X3k5coX1yjxwzupOmTEanDY';
 var container = document.querySelector('.container')
 const LOCAL_STORAGE_KEY = "Names";
+$('.container').hide();
 
 var historyNameArray = [];
 
@@ -48,7 +49,6 @@ async function youtubeQuery(searchInput) {
 $('#searchBtn').click(() => {
     let videos = document.querySelector('.videos');
     var searchInput = $('#searchInput').val();
-    container.removeAttribute("hidden");
     // clear the old content in container when the button is clicked
     videos.innerHTML = "";
     // if the search input is empty, don't add it to local storage or append the button
@@ -134,7 +134,7 @@ function getPokemon(searchInput){
             });
             $historySection.append($historyNamesButton);
         }
-
+        $('.container').show();
         youtubeQuery(searchInput);
     })
 }
